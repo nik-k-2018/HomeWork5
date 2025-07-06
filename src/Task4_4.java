@@ -6,11 +6,17 @@ public class Task4_4 {
         double currentSavings = initialSavings;
         int months = 0;
 
+        System.out.println("Накопления Василия (каждый 6-й месяц):");
+
         // Цикл while (пока накопления меньше целевой суммы)
         while (currentSavings < TARGET_AMOUNT) {
             months++;
             currentSavings *= (1 + MONTHLY_INTEREST_RATE);  // Увеличиваем на 7%
-            System.out.printf("Месяц %d, сумма накоплений: %.2f рублей%n", months, currentSavings);
+
+            // Выводим только каждый 6-й месяц
+            if (months % 6 == 0) {
+                System.out.printf("Месяц %d, сумма накоплений: %.2f рублей%n", months, currentSavings);
+            }
         }
 
         System.out.printf("\nИтог: Василию потребуется %d месяцев, чтобы накопить %.2f рублей.%n", months, TARGET_AMOUNT);
