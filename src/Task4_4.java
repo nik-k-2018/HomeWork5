@@ -1,24 +1,23 @@
 public class Task4_4 {
     public static void main(String[] args) {
-        double initialSavings = 15_000;  // Начальная сумма вклада
-        final double MONTHLY_INTEREST_RATE = 0.07;  // 7% в месяц
-        final double TARGET_AMOUNT = 12_000_000;  // Целевая сумма
-        double currentSavings = initialSavings;
-        int months = 0;
+        final double INITIAL_AMOUNT = 15_000;  // Стартовая сумма
+        final double MONTHLY_RATE = 0.07;       // 7% в месяц
+        final int YEARS = 9;                   // Срок в годах
+        final int TOTAL_MONTHS = YEARS * 12;   // Всего месяцев
+        final int REPORT_INTERVAL = 6;         // Отчёт каждые 6 месяцев
 
-        System.out.println("Накопления Василия (каждый 6-й месяц):");
+        double currentAmount = INITIAL_AMOUNT;
 
-        // Цикл while (пока накопления меньше целевой суммы)
-        while (currentSavings < TARGET_AMOUNT) {
-            months++;
-            currentSavings *= (1 + MONTHLY_INTEREST_RATE);  // Увеличиваем на 7%
+        System.out.println("=== Накопления Василия за 9 лет (каждые полгода) ===");
 
-            // Выводим только каждый 6-й месяц
-            if (months % 6 == 0) {
-                System.out.printf("Месяц %d, сумма накоплений: %.2f рублей%n", months, currentSavings);
+        for (int month = 1; month <= TOTAL_MONTHS; month++) {
+            currentAmount *= (1 + MONTHLY_RATE);  // Начисляем проценты
+
+            if (month % REPORT_INTERVAL == 0) {
+                int halfYearCount = month / REPORT_INTERVAL;
+                System.out.printf("Полугодие %d (%d месяц): %,10.2f рублей%n",
+                        halfYearCount, month, currentAmount);
             }
         }
-
-        System.out.printf("\nИтог: Василию потребуется %d месяцев, чтобы накопить %.2f рублей.%n", months, TARGET_AMOUNT);
     }
 }
